@@ -1,0 +1,126 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: aqua;
+    color: #333;
+    line-height: 1.6;
+}
+
+.dashboard-container{
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar{
+    width: 280px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    height: 100vh;
+    z-index: 100;
+}
+
+.header-sidebar{
+    padding: 20px; 
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.header-sidebar img{
+    width: 130px;
+    border-radius: 25px;
+}
+
+.header-sidebar h2{
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+.header-sidebar p{
+    font-size: 1rem;
+    opacity: 0.7;
+}
+
+.nav-menu{
+    flex: 1;
+    padding: 15px 0;
+    list-style: none;
+}
+
+.nav-item{
+    margin-bottom: 5px;
+}
+
+.nav-link{
+    display: flex;
+    align-items: center;
+    padding: 15px 25px;
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.nav-link:hover{
+    border-left: 4px solid #fff;
+}
+
+.nav-link i{
+    font-size: 1.3rem;
+    margin-right: 20px;
+}
+
+.sidebar-footer{
+    padding: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.user-info{
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+.user-info i{
+    font-size: 1.3rem;
+    margin: 0 15px;
+}
+
+.user-info div span{
+    display: block;
+    font-weight: bold;
+}
+
+.user-info div small {
+    opacity: 0.8;
+    font-size: 0.8rem;
+}
+
+.sidebar-footer button{
+    width: 100%;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.sidebar-footer button:hover{
+    background-color: rgba(255, 255, 255, 0.3);
+}
+

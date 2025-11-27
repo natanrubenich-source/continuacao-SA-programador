@@ -1,0 +1,27 @@
+body{
+    margin: 20px;
+    height: auto;
+}
+
+.register-container{
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.requerimentos-senha{
+    display: flex;
+    align-items: center;
+    margin: 12px;
+    gap: 12px;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.requerimentos-senha i{
+    color: #667eea;
+    font-size: 1.3rem;
+}

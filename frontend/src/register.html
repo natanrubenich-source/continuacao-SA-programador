@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Usuários - Frotas SENAI</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/register.css">
+</head>
+<body>
+    <div class="register-container">
+        <div class="login-card">
+            <div class="logo-section">
+                <img src="../assets/img/logo.png" alt="Logo Senai">
+                <h1>Cadastro de Usuários</h1>
+                <p>Sistema de Gestão de Frotas- SENAI</p>
+            </div>
+        
+
+            <div class="form-cadastro">
+                <div class="input-group">
+                    <i class="fas fa-user"> </i>
+                    <input type="text" id="nome" placeholder="Nome completo" required>
+                </div>
+
+            <div class="input-group">
+                    <i class="fas fa-envelope"> </i>
+                    <input type="email" id="email" placeholder="E-mail" required>
+            </div>
+
+            <div class="input-group">
+                    <i class="fas fa-building"> </i>
+                    <input type="text" id="setor" placeholder="Departamento/Setor" required>
+            </div>
+
+            <div class="input-group">
+                    <i class="fas fa-phone"> </i>
+                    <input type="text" id="fone" placeholder="Telefone (99)9999-9999" required>
+            </div>
+
+            <div class="input-group">
+                    <i class="fas fa-lock"> </i>
+                    <input type="password" id="password" placeholder="Senha" required>
+            </div>
+
+            <div class="requerimentos-senha">
+                <i class="fas fa-info-circle"></i>
+            <p>A senha deve ter pelo menos 6 caracteres, uma letra maiúscula e um caractere especial.</p>
+            </div>
+
+            <button type="submit" class="login-btn">
+                    <i class="fas fa-user-plus"> </i>
+                    Cadastrar
+            </button>
+
+            <div id="message" class="message"></div>
+
+            <div class="register">
+                <p>Já possui conta? <a href="index.html">Faça login aqui</a> </p>
+            </div>
+            </div>
+    </div>
+    </div>
+    
+</body>
+</html>
