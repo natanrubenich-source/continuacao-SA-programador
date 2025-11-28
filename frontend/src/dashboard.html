@@ -137,14 +137,146 @@
                     </button>
                 </div>
                 
-
-
+                <div class="table-container">
+                    <table id="viagensTable" class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Destino</th>
+                                <th>Data</th>
+                                <th>Horário</th>
+                                <th>Veículo</th>
+                                <th>Vagas</th>
+                                <th>Status</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
             </section>
 
+        <!-- Veiculos Session -->
+        <section id="veiculos-section" class="content-section">
+            <div class="section-header">
+                <h1>Gestão de Veículos</h1>
+                <button class="btn-primary" onclick="abrirModalVeiculo()">
+                    <i class="fas fa-plus"></i>
+                    Novo Veículo
+                </button>
+            </div>
+        
+            <div class="vehicles-grid" id="veiculosGrid">
+                <!-- Os veículos aparecerão aqui -->
+            </div>
+        </section>
 
+        <!-- usuários Section -->
+        <section id="usuarios-section" class="content-section">
+            <div class="section-header">
+                <h1>Funcionarios</h1>
+                    <a href="register.html" class="btn-primary">
+                        <i class="fas fa-user-plus"></i>
+                        Novo Funcionario
+                    </a>
+            </div>
 
-         </main>
+            <div class="table-container">
+                <table id="usuariosTable" class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Email</th>
+                            <th>Setor</th>
+                            <th>Telefone</th>
+                            <th>Data Cadastro</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Dados seão carregados aqui -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+</div>
 
+<!-- Modais -->
+<div id="modalViagem" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Nova Viagem</h2>
+            <span class="close" onclick="fecharModal('modalViagem')">&times;</span>
+        </div>
+
+        <!-- MODAL DE VIAGEM!!! -->
+        <form action="formViagem">
+
+            <div class="form-group">
+                <label for="destino">Destino</label>
+                <input type="text" id="destino" required>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-row">
+                    <label for="dataViagem">Data</label>
+                    <input type="date" id="dataViagem" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="horaSaida">Horário de Saída</label>
+                    <input type="time" id="horaSaida" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="horaRetorno">Horário de Retorno:</label>
+                    <input type="time" id="horaRetorno" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="veiculoId">Veículo:</label>
+                    <select id="veiculoId" required>
+                        <option value="">Selecione um Veículo</option>
+                    </select>
+                </div>
+            </div>
+
+                <div class="form-group">
+                    <label for="vagasDisponiveis">Vagas Disponíveis:</label>
+                    <input type="number" id="vagasDisponiveis" min="1" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="observacoes">Observações:</label>
+                    <textarea id="observacoes" rows="3"></textarea>
+                </div>
+        </form>
     </div>
+</div>
+
+<!-- MODAL DO VEICULO -->
+<div id="modalVeiculo" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Novo Veículo</h2>
+            <span class="close" onclick="fecharModal('modalVeiculo')">&times;</span>
+        </div>
+
+        <form action="formVeiculo">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="marca">Marca:</label>
+                    <input type="text" id="marca" required>
+                </div>
+                <!-- PARAMOS AQUI !! 
+                 Deve-se criar modelo, placa, ano, capacidade, tipo, observações e botões -->
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
+    <script src="../assets/js/dashboard.js"></script>
 </body>
 </html>
