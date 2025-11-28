@@ -6,7 +6,7 @@
 
 body{
     font-family: Arial, Helvetica, sans-serif;
-    background-color: aqua;
+    background-color:#f5f7fa;
     color: #333;
     line-height: 1.6;
 }
@@ -122,5 +122,118 @@ body{
 
 .sidebar-footer button:hover{
     background-color: rgba(255, 255, 255, 0.3);
+    transform: scale(1.03);
 }
 
+/* AREA PRINCIPAL */
+/* Container principal do conteúdo */
+.main-content{
+    flex: 1;
+    margin-left: 280px;
+    padding: 30px;
+    background:#eef0f4;   
+}
+
+.content-section{
+    display: none;
+}
+
+.content-section.active{
+    display: block;
+}
+
+/* Cabeçalho das sessões com titulo e ações */
+.section-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+/* Titulo principla da sessão (Dashboard) */
+.section-header h1{
+    font-size: 2rem;
+    font-weight: 700;
+    color: #333;
+}
+
+/* Descrição/subtiluo da sessão */
+.section-header p{
+    color: #666;
+    margin-top: 5px;
+}
+
+/* GRID DE ESTATISTICAS!! */
+.stats-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+/* Card indiviual de estatistica */
+.stat-card{
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0, 0.1);
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+/* configurar animação */
+.stat-card:hover{
+    transform: translateY(-5px);
+}
+
+/* Estilizando os icones */
+.stat-icon{
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    display: flex;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+    color:white;
+    font-size: 1.5rem;
+}
+
+.stat-info h3{
+    font-size: 2rem;
+    font-weight: 700;
+    color:#333;
+    margin-bottom: 5px;
+}
+
+.stat-info p {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* CONTEUDO DA DASHBOARD! */
+.dashboard-content{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+}
+
+.recent-trips{
+    background: white;
+    box-shadow: 0 5px 15px rgba(0,0,0, 0.1);
+    border-radius: 15px;
+    padding: 25px;
+}
+
+.recent-trips h2{
+    margin-bottom: 20px;
+    color: #333;
+    font-weight: 600;
+}
+
+.trips-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}

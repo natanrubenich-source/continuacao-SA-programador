@@ -59,6 +59,92 @@
                 </button>
             </div>
         </nav>
+
+        <!-- Main content (conteudo principal) -->
+         <main class="main-content">
+            <!-- Sessão da Dashbord -->
+                <section id="dashboard-section" class="content-section active">
+                    <div class="section-header">
+                        <h1>Dashboard</h1>
+                        <p>Visão geral do sistema de frotas</p>
+                    </div>
+
+                    <div class="stats-grid">
+
+                        <!-- Card que mostra as viagens agendadas -->
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-route"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3 id="totalViagens">0</h3>
+                                <p>Viagens Agendadas</p>
+                            </div>
+                        </div>
+
+                        <!-- Card que mostra os veiculos disponiveis -->
+                         <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-car"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3 id="totalVeiculos">0</h3>
+                                <p>Veiculos disponiveis</p>
+                            </div>
+                        </div>
+
+                        <!-- Card que mostra quantidade de Funcionarios Cadastrados -->
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3 id="totalUsuarios">0</h3>
+                                <p>Funcionarios Cadastrados</p>
+                            </div>
+                        </div>
+
+                        <!-- Card que mostra a quantidade de viagens feitas hoje -->
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-calendar-check"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3 id="viagensHoje">0</h3>
+                                <p>Viagens Hoje</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Proximas viagens -->
+                     <div class="dashboard-content">
+                        <div class="recent-trips">
+                            <h2>Próximas Viagens</h2>
+                            <div id="proximasViagens" class="trips-list">
+                                <!-- As viagens serão carregadas aqui! -->
+                            </div>
+                        </div>
+                     </div>
+                </section>
+
+            <!-- Viagens Section (sessão de viagens) -->
+            <section id="viagens-section" class="content-section">
+                <div class="section-header">
+                    <h1>Gestão de Viagens</h1>
+                    <button class="btn-primary" onclick="abrirModalViagem()">
+                        <i class="fas fa-plus"></i>
+                        Nova Viagem
+                    </button>
+                </div>
+                
+
+
+            </section>
+
+
+
+         </main>
+
     </div>
 </body>
 </html>
