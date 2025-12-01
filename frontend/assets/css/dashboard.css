@@ -237,3 +237,405 @@ body{
     flex-direction: column;
     gap: 15px;
 }
+
+/* Item individual da viagem */
+.trip-item{
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    border-left: 4px solid #667eea;
+}
+
+/* Cabeçalho da item da viagem */
+.trip-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* Nome do destino de viagens */
+.trip-destination{
+    font-weight: 600;
+    color: #333;
+    font-size: 1.1rem;
+}
+
+/* Data da viagem */
+.trip-details{
+    display: flex;
+    gap: 20px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* SISTEMA DE TABELAS */
+/* Container de Tabelas */
+.table-container{
+    background-color: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0, 0.8);
+}
+
+/* Dados principais da tabela */
+.date-table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Caceçalho da tabela */
+.date-table th{
+    background-color: #f8f9fa;
+    padding: 20px;
+    text-align: left;
+    font-weight: 600;
+    color: #333;
+    border-bottom: 1px solid #dee2e6;
+}
+
+/* Celulas de dados da tabela */
+.date-table td{
+    padding: 20px;
+    color: #666;
+    border-bottom: 1px solid #dee2e6;
+}
+
+/* Efeito hover na linha da tabela */
+.date-table tr:hover{
+    background-color: #f8f9fa;
+}
+
+/* =============== GRID DE VEICULOS ==================== */
+/* Container apra os cards dos veiculos */
+.vehicles-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+/* Card individual do veiculo */
+.vehicle-card{
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0, 0.8);
+    transition: transform 0.3s ease;
+}
+
+/* Efeito hover no card */
+.vehicle-card:hover{
+    transform: translateY(-5px);
+}
+
+/* Cabeçalho do veículo */
+.vehicle-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+/* Titulo do veiculo */
+.vehicle-title{
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+/* Badge de status do veículo */
+.vehicle-status {
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+/* Status disponível (verde) */
+.vehicle-status.disponivel {
+    background: #d4edda; 
+    color: #155724;
+}
+
+/* Status indisponível (vermelho) */
+.vehicle-status.indisponivel {
+    background: #f8d7da; 
+    color: #721c24; 
+}
+
+/* Grid de informações do veículo */
+.vehicle-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px; /
+    margin-bottom: 15px;
+}
+
+/* Item individual de informação do veículo */
+.vehicle-info-item {
+    display: flex;
+    align-items: center; 
+    gap: 8px; 
+    font-size: 0.9rem; 
+    color: #666; 
+}
+
+/* Ícones das informações do veículo */
+.vehicle-info-item i {
+    color: #667eea; 
+    width: 16px; 
+}
+
+/* ========================================
+   SISTEMA DE MODAIS
+   ======================================== */
+
+/* Overlay do modal */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1000; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px); 
+}
+
+/* Conteúdo principal do modal */
+.modal-content {
+    background: white; 
+    margin: 5% auto; 
+    padding: 0;
+    border-radius: 15px; 
+    width: 90%; 
+    max-width: 600px; 
+    max-height: 90vh; 
+    overflow-y: auto; 
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+/* Cabeçalho do modal */
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 30px;
+    border-bottom: 1px solid #dee2e6;
+}
+
+/* Título do modal */
+.modal-header h2 {
+    color: #333;
+    font-weight: 600;
+}
+
+/* Botão de fechar modal */
+.close {
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    color: #aaa;
+    transition: color 0.3s ease;
+}
+
+/* Estado hover do botão fechar */
+.close:hover {
+    color: #333;
+}
+
+/* Formulário dentro do modal */
+.modal form {
+    padding: 30px;
+}
+
+/* Grupo de campos do formulário */
+.form-group {
+    margin-bottom: 20px;
+}
+
+/* Linha com dois campos lado a lado */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+/* Labels dos campos */
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Campos de entrada do formulário */
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e1e5e9;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+    background: #f8f9fa;
+}
+
+/* Estado de foco dos campos */
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #667eea;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+/* Container dos botões de ação do modal */
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+/* ========================================
+   BADGES DE STATUS
+   ======================================== */
+
+/* Badge genérico de status */
+.status-badge {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+/* Status: Agendada (azul) */
+.status-agendada {
+    background: #cce5ff;
+    color: #0066cc;
+}
+
+/* Status: Em andamento (amarelo) */
+.status-em_andamento {
+    background: #fff3cd;
+    color: #856404;
+}
+
+/* Status: Concluída (verde) */
+.status-concluida {
+    background: #d4edda;
+    color: #155724;
+}
+
+/* Status: Cancelada (vermelho) */
+.status-cancelada {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+/* ========================================
+   BOTÕES DE AÇÃO
+   ======================================== */
+
+/* Botão genérico de ação */
+.action-btn {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    margin-right: 5px;
+    transition: all 0.3s ease;
+}
+
+/* Botão de editar (azul) */
+.btn-edit {
+    background: #17a2b8;
+    color: white;
+}
+
+/* Estado hover do botão editar */
+.btn-edit:hover {
+    background: #138496;
+}
+
+/* Botão de excluir (vermelho) */
+.btn-delete {
+    background: #dc3545;
+    color: white;
+}
+
+/* Estado hover do botão excluir */
+.btn-delete:hover {
+    background: #c82333;
+}
+
+/* ========================================
+   ANIMAÇÕES
+   ======================================== */
+
+/* Animação de entrada do modal */
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ========================================
+   RESPONSIVIDADE MOBILE
+   ======================================== */
+
+/* Ajustes para telas pequenas (tablets e celulares) */
+@media (max-width: 768px) {
+    /* Sidebar ocupa tela completa em mobile */
+    .sidebar {
+        width: 100%;
+        position: relative;
+        height: auto;
+    }
+    
+    /* Conteúdo principal sem margem lateral */
+    .main-content {
+        margin-left: 0;
+        padding: 20px;
+    }
+    
+    /* Cabeçalho das seções em coluna */
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    /* Grid de estatísticas em uma coluna */
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Formulários em uma coluna */
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Modal ocupa mais espaço em mobile */
+    .modal-content {
+        width: 95%;
+        margin: 10% auto;
+    }
+    
+    /* Grid de veículos em uma coluna */
+    .vehicles-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+

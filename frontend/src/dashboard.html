@@ -6,6 +6,7 @@
     <title>Dashboard - Frotas SENAI</title>
     <link rel="stylesheet" href="../assets/css/dashboard.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
 </head>
 <body>
     <div class="dashboard-container">
@@ -268,8 +269,49 @@
                     <label for="marca">Marca:</label>
                     <input type="text" id="marca" required>
                 </div>
-                <!-- PARAMOS AQUI !! 
-                 Deve-se criar modelo, placa, ano, capacidade, tipo, observações e botões -->
+                <div class="form-group">
+                    <label for="modelo">Modelo:</label>
+                    <input type="text" id="modelo" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="placa">Placa:</label>
+                    <input type="text" id="placa" required>
+                </div>
+                <div class="form-group">
+                    <label for="ano">Ano:</label>
+                    <input type="number" id="ano" min="1990" max="2030" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="capacidade">Capacidade:</label>
+                    <input type="number" id="capacidade" min="1" required>
+                </div>
+                <div class="form-group">
+                    <label for="tipo">Tipo:</label>
+                    <select id="tipo" required>
+                        <option value="">Selecione um tipo</option>
+                        <option value="Moto">Moto</option>
+                        <option value="Carro">Carro</option>
+                        <option value="Van">Van</option>
+                        <option value="Ônibus">Ônibus</option>
+                        <option value="Caminhão">Caminhão</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="observacoesVeiculo">Observações:</label>
+                <textarea id="observacoesVeiculo" rows="3"></textarea>            
+            </div>
+
+            <div class="modal-actions">
+                <button type="button" class="btn-secondary" onclick="fecharModal('modalVeiculo')">Cancelar</button>
+                <button type="submit" class="btn-primary">Cadastrar</button>
             </div>
 
         </form>
