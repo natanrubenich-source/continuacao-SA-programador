@@ -41,10 +41,25 @@ async function carregarDados() {
     try {
         await Promise.all([
             carregarEstatisticas(),
-            carregarProximasViagens()
+            carregarProximasViagens(),
+            carregarViagens()
         ]);
     } catch (error) {
         console.error('Erro ao carregar dados:', error);
+        mostrarErroConexao();
+    }
+}
+
+function mostrarErroConexao(){
+    const tbody = document.querySelector('#viagensTable tbody');
+    if (tbody){
+        tbody.innerHTML=`
+        <tr>
+            <td>
+            <i class="fas fa-exclamation-triangle"></i>
+            Erro ao conectar com o servidor!
+            </td>
+        </tr>`;
     }
 }
 
