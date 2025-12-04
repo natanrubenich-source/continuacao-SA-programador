@@ -279,13 +279,13 @@ body{
 }
 
 /* Dados principais da tabela */
-.date-table{
+.data-table{
     width: 100%;
     border-collapse: collapse;
 }
 
 /* Caceçalho da tabela */
-.date-table th{
+.data-table th{
     background-color: #f8f9fa;
     padding: 20px;
     text-align: left;
@@ -295,14 +295,14 @@ body{
 }
 
 /* Celulas de dados da tabela */
-.date-table td{
+.data-table td{
     padding: 20px;
     color: #666;
     border-bottom: 1px solid #dee2e6;
 }
 
 /* Efeito hover na linha da tabela */
-.date-table tr:hover{
+.data-table tr:hover{
     background-color: #f8f9fa;
 }
 
@@ -550,6 +550,43 @@ body{
     font-size: 0.8rem;
     margin-right: 5px;
     transition: all 0.3s ease;
+}
+
+.btn-primary{
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 10px;
+    border: none;
+    color: white;
+    box-shadow: 0 3px 8px rgba(0,0,0, 0.4);
+    font-weight: 600;
+    cursor: pointer;
+    align-items: center;
+    text-decoration: none;
+    display: inline-flex;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover{
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, #4c66dc, #703fa1);
+}
+
+.btn-secondary{
+    background: #6c757d;
+    border-radius: 10px;
+    border: none;
+    padding: 12px 24px;
+    color:white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 8px rgba(0,0,0, 0.4);
+
+}
+
+.btn-secondary:hover{
+    transform: translateY(-2px);
 }
 
 /* Botão de editar (azul) */
