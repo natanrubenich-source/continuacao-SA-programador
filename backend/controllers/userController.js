@@ -28,9 +28,10 @@ export async function registrarUsuario(req, res) {
       usuario: novoUsuario,
     });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ erro: "Erro ao cadastrar usuário." });
-  }
+  console.error("ERRO DETALHADO:", error);
+  res.status(500).json({ erro: error.message });
+}
+
 }
 
 // ===== FUNÇÃO DE LOGIN SIMPLES COM VALIDAÇÃO =====
