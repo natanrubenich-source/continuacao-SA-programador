@@ -37,9 +37,9 @@ document.getElementById("formCadastro").addEventListener("submit", async (e) => 
             document.getElementById("formCadastro").reset(); // Limpa o formulário
             
             // Redireciona para login após 2 segundos
-            setTimeout(() => {
-                window.location.href = "login.html";
-            }, 2000);
+            // setTimeout(() => {
+            //     window.location.href = "./login.html";
+            // }, 2000);
         } else {
             // Cadastro deu erro
             mensagem.className = "message error";

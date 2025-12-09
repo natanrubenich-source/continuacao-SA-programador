@@ -23,19 +23,48 @@ export async function buscarVeiculoPorId(id) {
 }
 
 // Criar novo veículo
-export async function criarVeiculo(modelo, marca, placa, ano, capacidade, tipo, observacoes) {
+export async function criarVeiculo(
+  modelo,
+  marca,
+  placa,
+  ano,
+  capacidade,
+  tipo,
+  observacoes,
+  disponivel = true
+) {
   const query = `
-    INSERT INTO veiculos (modelo, marca, placa, ano, capacidade, tipo, observacoes)
-    VALUES ($1, $2, $3, $4, $5, $6, $7)
+    INSERT INTO veiculos 
+      (modelo, marca, placa, ano, capacidade, tipo, observacoes, disponivel)
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
     RETURNING *;
   `;
-  const values = [modelo, marca, placa, ano, capacidade, tipo, observacoes];
+  const values = [
+    modelo,
+    marca,
+    placa,
+    ano,
+    capacidade,
+    tipo,
+    observacoes,
+    disponivel,
+  ];
   const result = await pool.query(query, values);
   return result.rows[0];
 }
 
 // Atualizar veículo
-export async function atualizarVeiculo(id, modelo, marca, placa, ano, capacidade, tipo, disponivel, observacoes) {
+export async function atualizarVeiculo(
+  id,
+  modelo,
+  marca,
+  placa,
+  ano,
+  capacidade,
+  tipo,
+  disponivel,
+  observacoes
+) {
   const query = `
     UPDATE veiculos 
     SET modelo = $2, marca = $3, placa = $4, ano = $5, capacidade = $6, 
@@ -43,13 +72,40 @@ export async function atualizarVeiculo(id, modelo, marca, placa, ano, capacidade
     WHERE id = $1
     RETURNING *;
   `;
-  const values = [id, modelo, marca, placa, ano, capacidade, tipo, disponivel, observacoes];
+  const values = [
+    id,
+    modelo,
+    marca,
+    placa,
+    ano,
+    capacidade,
+    tipo,
+    disponivel,
+    observacoes,
+  ];
   const result = await pool.query(query, values);
   return result.rows[0];
 }
 
 // Deletar veículo
 export async function deletarVeiculo(id) {
-  const result = await pool.query("DELETE FROM veiculos WHERE id = $1 RETURNING *", [id]);
+  const result = await pool.query(
+    "DELETE FROM veiculos WHERE id = $1 RETURNING *",
+    [id]
+  );
   return result.rows[0];
+}
+
+// Buscar veículo pelo número da placa
+export async function buscarVeiculoPorPlaca(placa) {
+  try {
+    const resultado = await pool.query(
+      "SELECT * FROM veiculos WHERE placa = $1",
+      [placa]
+    );
+    return resultado.rows[0]; // Retorna o veículo ou undefined
+  } catch (error) {
+    console.error("Erro ao buscar veículo por placa:", error);
+    throw error;
+  }
 }

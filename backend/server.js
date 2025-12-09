@@ -11,6 +11,8 @@ dotenv.config();
 const app = express();
 
 app.use(cors());
+app.use(cors({ origin: "http://127.0.0.1:5500" }));
+
 app.use(express.json());
 
 // Rotas da API
@@ -20,14 +22,14 @@ app.use("/api/viagens", viagemRoutes);
 app.use("/api/unidades", unidadeRoutes);
 
 app.get("/", (req, res) => {
-  res.json({ 
+  res.json({
     message: "API Sistema de Gestão de Frota SENAI-SC funcionando",
     endpoints: {
       usuarios: "/api/users",
-      veiculos: "/api/veiculos", 
+      veiculos: "/api/veiculos",
       viagens: "/api/viagens",
-      unidades: "/api/unidades"
-    }
+      unidades: "/api/unidades",
+    },
   });
 });
 
