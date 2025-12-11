@@ -1,50 +1,54 @@
-// ===== FUNÇÃO DE LOGIN SIMPLES COM BANCO =====
+// login.js — versão sem token, para apresentação
 document.getElementById("formLogin").addEventListener("submit", async (e) => {
-    e.preventDefault(); // Impede envio padrão do formulário
+  e.preventDefault();
 
-    // Pega os valores dos campos
-    const email = document.getElementById("email").value.trim();
-    const senha = document.getElementById("senha").value.trim();
-    const mensagem = document.getElementById("mensagem");
+  const email = document.getElementById("email").value.trim();
+  const senha = document.getElementById("senha").value.trim();
+  const mensagem = document.getElementById("mensagem");
 
-    // Limpa mensagem anterior
-    mensagem.textContent = "";
+  mensagem.textContent = "";
 
-    // Validação básica - verifica se campos estão preenchidos
-    if (!email || !senha) {
-        mensagem.className = "message error";
-        mensagem.textContent = "Preencha todos os campos.";
-        return;
+  if (!email || !senha) {
+    mensagem.className = "message error";
+    mensagem.textContent = "Preencha todos os campos.";
+    return;
+  }
+
+  try {
+    const response = await fetch("http://localhost:3000/api/users/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, senha }),
+    });
+
+    const data = await response.json();
+    console.log("Resposta do login:", data, "status:", response.status);
+
+    if (response.ok) {
+      mensagem.className = "message success";
+      mensagem.textContent = "Login realizado com sucesso!";
+
+      // Extrai o usuário retornado pelo backend
+      const usuario = data.usuario || data.user || data;
+
+      // Remove senha antes de salvar
+      const { senha: _, ...usuarioSemSenha } = usuario;
+
+      // Salva no localStorage
+      localStorage.setItem("user", JSON.stringify(usuarioSemSenha));
+      console.log("Usuário salvo no localStorage:", usuarioSemSenha);
+
+      // Redireciona para dashboard
+      setTimeout(() => (window.location.href = "dashboard.html"), 300);
+    } else {
+      mensagem.className = "message error";
+      mensagem.textContent = data.erro || data.message || "Erro no login.";
+      console.warn("Login falhou:", data);
     }
-
-    try {
-        // Faz requisição para o servidor (API)
-        const response = await fetch("http://localhost:3000/api/users/login", {
-            method: "POST", // Método POST para enviar dados
-            headers: { "Content-Type": "application/json" }, // Tipo de conteúdo
-            body: JSON.stringify({ email, senha }), // Converte dados para JSON
-        });
-
-        const data = await response.json(); // Converte resposta para JSON
-
-        if (response.ok) {
-            // Login deu certo
-            mensagem.className = "message success";
-            mensagem.textContent = "Login realizado com sucesso!";
-            
-            // Redireciona para o dashboard após 1 segundo
-            setTimeout(() => {
-                window.location.href = "dashboard.html";
-            }, 1000);
-        } else {
-            // Login deu erro
-            mensagem.className = "message error";
-            mensagem.textContent = data.erro || "Erro no login.";
-        }
-    } catch (error) {
-        // Erro de conexão
-        mensagem.className = "message error";
-        mensagem.textContent = "Erro ao conectar com o servidor. Verifique se está rodando.";
-        console.error("Erro:", error);
-    }
+  } catch (error) {
+    mensagem.className = "message error";
+    mensagem.textContent =
+      "Erro ao conectar com o servidor. Verifique se está rodando.";
+    console.error("Erro ao efetuar login:", error);
+  }
 });

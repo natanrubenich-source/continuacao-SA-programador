@@ -1,329 +1,294 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard - Frotas SENAI</title>
-    <link rel="stylesheet" href="../assets/css/dashboard.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    
-</head>
-<body>
+    <link rel="stylesheet" href="../assets/css/dashboard.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
     <div class="dashboard-container">
-        <nav class="sidebar">
-            <div class="header-sidebar">
-                <img src="../assets/img/logo.png" alt="Logo Senai">
-                <h2>Gestão de Frotas</h2>
-                <p>SENAI-SC</p>
+      <nav class="sidebar">
+        <div class="header-sidebar">
+          <img src="../assets/img/logo.png" alt="Logo Senai" />
+          <h2>Gestão de Frotas</h2>
+          <p>SENAI-SC</p>
+        </div>
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <a class="nav-link" href="#" data-section="dashboard">
+              <i class="fas fa-clock"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" data-section="viagens">
+              <i class="fas fa-route"></i>
+              <span>Viagens</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" data-section="veiculos">
+              <i class="fas fa-car"></i>
+              <span>Veículos</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" data-section="usuarios">
+              <i class="fas fa-users"></i>
+              <span>Funcionários</span>
+            </a>
+          </li>
+        </ul>
+        <div class="sidebar-footer">
+          <div class="user-info">
+            <i class="fas fa-user"></i>
+            <div>
+              <span id="userName"></span>
+              <small id="userEmail"></small>
             </div>
-            <ul class="nav-menu">
-                <li class="nav-item">
-                    <a class="nav-link" href="" data-section="dashboard">
-                        <i class="fas fa-clock"> </i>
-                        <span>Dashboard</span>
-                    </a>
-                </li>
+          </div>
+          <button id="btnSair"><i class="fas fa-sign-out"></i> Sair</button>
+        </div>
+      </nav>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="" data-section="viagens">
-                        <i class="fas fa-route"> </i>
-                        <span>Viagens</span>
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="" data-section="veiculos">
-                        <i class="fas fa-car"> </i>
-                        <span>Veículos</span>
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="" data-section="usuarios">
-                        <i class="fas fa-users"> </i>
-                        <span>Funcionários</span>
-                    </a>
-                </li>
-            </ul>
-
-            <div class="sidebar-footer">
-                <div class="user-info">
-                    <i class="fas fa-user"> </i>
-                    <div>
-                        <span>Usuário</span>
-                        <small>usuario@senai.sc</small>
-                    </div>
-                </div>
-                <button>
-                    <i class="fas fa-sign-out"> </i>
-                    Sair
-                </button>
+      <main class="main-content">
+        <!-- Dashboard Section -->
+        <section id="dashboard-section" class="content-section active">
+          <div class="section-header">
+            <h1>Dashboard</h1>
+            <p>Visão geral do sistema de frotas</p>
+          </div>
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-icon"><i class="fas fa-route"></i></div>
+              <div class="stat-info">
+                <h3 id="totalViagens">0</h3>
+                <p>Viagens Agendadas</p>
+              </div>
             </div>
-        </nav>
+            <div class="stat-card">
+              <div class="stat-icon"><i class="fas fa-car"></i></div>
+              <div class="stat-info">
+                <h3 id="totalVeiculos">0</h3>
+                <p>Veiculos disponíveis</p>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon"><i class="fas fa-users"></i></div>
+              <div class="stat-info">
+                <h3 id="totalUsuarios">0</h3>
+                <p>Funcionários Cadastrados</p>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon"><i class="fas fa-calendar-check"></i></div>
+              <div class="stat-info">
+                <h3 id="viagensHoje">0</h3>
+                <p>Viagens Hoje</p>
+              </div>
+            </div>
+          </div>
 
-        <!-- Main content (conteudo principal) -->
-         <main class="main-content">
-            <!-- Sessão da Dashbord -->
-                <section id="dashboard-section" class="content-section active">
-                    <div class="section-header">
-                        <h1>Dashboard</h1>
-                        <p>Visão geral do sistema de frotas</p>
-                    </div>
+          <div class="dashboard-content">
+            <div class="recent-trips">
+              <h2>Próximas Viagens</h2>
+              <div id="proximasViagens" class="trips-list">
+                <!-- As viagens serão carregadas aqui -->
+              </div>
+            </div>
+          </div>
+        </section>
 
-                    <div class="stats-grid">
+        <!-- Viagens Section -->
+        <section id="viagens-section" class="content-section">
+          <div class="section-header">
+            <h1>Gestão de Viagens</h1>
+            <button id="btnNovaViagem" class="btn-primary">
+              <i class="fas fa-plus"></i> Nova Viagem
+            </button>
+          </div>
+          <div class="table-container">
+            <table id="viagensTable" class="data-table">
+              <thead>
+                <tr>
+                  <th>Destino</th>
+                  <th>Data</th>
+                  <th>Horário</th>
+                  <th>Veículo</th>
+                  <th>Vagas</th>
+                  <th>Status</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </section>
 
-                        <!-- Card que mostra as viagens agendadas -->
-                        <div class="stat-card">
-                            <div class="stat-icon">
-                                <i class="fas fa-route"></i>
-                            </div>
-                            <div class="stat-info">
-                                <h3 id="totalViagens">0</h3>
-                                <p>Viagens Agendadas</p>
-                            </div>
-                        </div>
-
-                        <!-- Card que mostra os veiculos disponiveis -->
-                         <div class="stat-card">
-                            <div class="stat-icon">
-                                <i class="fas fa-car"></i>
-                            </div>
-                            <div class="stat-info">
-                                <h3 id="totalVeiculos">0</h3>
-                                <p>Veiculos disponiveis</p>
-                            </div>
-                        </div>
-
-                        <!-- Card que mostra quantidade de Funcionarios Cadastrados -->
-                        <div class="stat-card">
-                            <div class="stat-icon">
-                                <i class="fas fa-users"></i>
-                            </div>
-                            <div class="stat-info">
-                                <h3 id="totalUsuarios">0</h3>
-                                <p>Funcionarios Cadastrados</p>
-                            </div>
-                        </div>
-
-                        <!-- Card que mostra a quantidade de viagens feitas hoje -->
-                        <div class="stat-card">
-                            <div class="stat-icon">
-                                <i class="fas fa-calendar-check"></i>
-                            </div>
-                            <div class="stat-info">
-                                <h3 id="viagensHoje">0</h3>
-                                <p>Viagens Hoje</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Proximas viagens -->
-                     <div class="dashboard-content">
-                        <div class="recent-trips">
-                            <h2>Próximas Viagens</h2>
-                            <div id="proximasViagens" class="trips-list">
-                                <!-- As viagens serão carregadas aqui! -->
-                            </div>
-                        </div>
-                     </div>
-                </section>
-
-            <!-- Viagens Section (sessão de viagens) -->
-            <section id="viagens-section" class="content-section">
-                <div class="section-header">
-                    <h1>Gestão de Viagens</h1>
-                    <button class="btn-primary" onclick="abrirModalViagem()">
-                        <i class="fas fa-plus"></i>
-                        Nova Viagem
-                    </button>
-                </div>
-                
-                <div class="table-container">
-                    <table id="viagensTable" class="data-table">
-                        <thead>
-                            <tr>
-                                <th>Destino</th>
-                                <th>Data</th>
-                                <th>Horário</th>
-                                <th>Veículo</th>
-                                <th>Vagas</th>
-                                <th>Status</th>
-                                <th>Ações</th>
-                            </tr>
-                        </thead>
-                    </table>
-                </div>
-            </section>
-
-        <!-- Veiculos Session -->
+        <!-- Veículos Section -->
         <section id="veiculos-section" class="content-section">
-            <div class="section-header">
-                <h1>Gestão de Veículos</h1>
-                <button class="btn-primary" onclick="abrirModalVeiculo()">
-                    <i class="fas fa-plus"></i>
-                    Novo Veículo
-                </button>
-            </div>
-        
-            <div class="vehicles-grid" id="veiculosGrid">
-                <!-- Os veículos aparecerão aqui -->
-            </div>
+          <div class="section-header">
+            <h1>Gestão de Veículos</h1>
+            <button id="btnNovoVeiculo" class="btn-primary">
+              <i class="fas fa-plus"></i> Novo Veículo
+            </button>
+          </div>
+          <div class="vehicles-grid" id="veiculosGrid"></div>
         </section>
 
-        <!-- usuários Section -->
+        <!-- Usuários Section -->
         <section id="usuarios-section" class="content-section">
-            <div class="section-header">
-                <h1>Funcionarios</h1>
-                    <a href="register.html" class="btn-primary">
-                        <i class="fas fa-user-plus"></i>
-                        Novo Funcionario
-                    </a>
-            </div>
-
-            <div class="table-container">
-                <table id="usuariosTable" class="data-table">
-                    <thead>
-                        <tr>
-                            <th>Nome</th>
-                            <th>Email</th>
-                            <th>Setor</th>
-                            <th>Telefone</th>
-                            <th>Data Cadastro</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Dados seão carregados aqui -->
-                    </tbody>
-                </table>
-            </div>
+          <div class="section-header">
+            <h1>Funcionários</h1>
+            <a href="register.html" class="btn-primary">
+              <i class="fas fa-user-plus"></i> Novo Funcionário
+            </a>
+          </div>
+          <div class="table-container">
+            <table id="usuariosTable" class="data-table">
+              <thead>
+                <tr>
+                  <th>Nome</th>
+                  <th>Email</th>
+                  <th>Setor</th>
+                  <th>Telefone</th>
+                  <th>Data Cadastro</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
         </section>
-    </main>
-</div>
+      </main>
+    </div>
 
-<!-- Modais -->
-<div id="modalViagem" class="modal">
-    <div class="modal-content">
+    <!-- Modais -->
+    <div id="modalViagem" class="modal">
+      <div class="modal-content">
         <div class="modal-header">
-            <h2>Nova Viagem</h2>
-            <span class="close" onclick="fecharModal('modalViagem')">&times;</span>
+          <h2>Nova Viagem</h2>
+          <span class="close" id="closeModalViagem">&times;</span>
         </div>
-
-        <!-- MODAL DE VIAGEM!!! -->
         <form id="formViagem">
-
+          <!-- campos da viagem -->
+          <div class="form-group">
+            <label for="destino">Destino</label>
+            <input type="text" id="destino" required />
+          </div>
+          <div class="form-row">
             <div class="form-group">
-                <label for="destino">Destino</label>
-                <input type="text" id="destino" required>
+              <label for="dataViagem">Data</label>
+              <input type="date" id="dataViagem" required />
             </div>
-            
-            
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="dataViagem">Data</label>
-                    <input type="date" id="dataViagem" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="horaSaida">Horário de Saída</label>
-                    <input type="time" id="horaSaida" required>
-                </div>
+            <div class="form-group">
+              <label for="horaSaida">Horário de Saída</label>
+              <input type="time" id="horaSaida" required />
             </div>
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="horaRetorno">Horário de Retorno:</label>
-                    <input type="time" id="horaRetorno" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="veiculoId">Veículo:</label>
-                    <select id="veiculoId" required>
-                        <option value="">Selecione um Veículo</option>
-                    </select>
-                </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="horaRetorno">Horário de Retorno</label>
+              <input type="time" id="horaRetorno" required />
             </div>
-
-                <div class="form-group">
-                    <label for="vagasDisponiveis">Vagas Disponíveis:</label>
-                    <input type="number" id="vagasDisponiveis" min="1" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="observacoes">Observações:</label>
-                    <textarea id="observacoes" rows="3"></textarea>
-                </div>
-                <div class="modal-actions">
-                    <button type="button" class="btn-secondary" onclick="fecharModal('modalViagem')">Cancelar</button>
-                    <button type="submit" class="btn-primary">Cadastrar</button>
-                </div>
+            <div class="form-group">
+              <label for="veiculoId">Veículo</label>
+              <select id="veiculoId" required>
+                <option value="">Selecione um Veículo</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="vagasDisponiveis">Vagas Disponíveis</label>
+            <input type="number" id="vagasDisponiveis" min="1" required />
+          </div>
+          <div class="form-group">
+            <label for="statusViagem">Status</label>
+            <select id="statusViagem">
+              <option value="Agendada">Agendada</option>
+              <option value="Em andamento">Em andamento</option>
+              <option value="Concluida">Concluída</option>
+              <option value="Cancelada">Cancelada</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="observacoes">Observações</label>
+            <textarea id="observacoes" rows="3"></textarea>
+          </div>
+          <div class="modal-actions">
+            <button type="button" class="btn-secondary" id="btnCancelarViagem">
+              Cancelar
+            </button>
+            <button type="submit" class="btn-primary">Cadastrar</button>
+          </div>
         </form>
+      </div>
     </div>
-</div>
 
-<!-- MODAL DO VEICULO -->
-<div id="modalVeiculo" class="modal">
-    <div class="modal-content">
+    <div id="modalVeiculo" class="modal">
+      <div class="modal-content">
         <div class="modal-header">
-            <h2>Novo Veículo</h2>
-            <span class="close" onclick="fecharModal('modalVeiculo')">&times;</span>
+          <h2>Novo Veículo</h2>
+          <span class="close" id="closeModalVeiculo">&times;</span>
         </div>
-
         <form id="formVeiculo">
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="marca">Marca:</label>
-                    <input type="text" id="marca" required>
-                </div>
-                <div class="form-group">
-                    <label for="modelo">Modelo:</label>
-                    <input type="text" id="modelo" required>
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="placa">Placa:</label>
-                    <input type="text" id="placa" required>
-                </div>
-                <div class="form-group">
-                    <label for="ano">Ano:</label>
-                    <input type="number" id="ano" min="1990" max="2030" required>
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="capacidade">Capacidade:</label>
-                    <input type="number" id="capacidade" min="1" required>
-                </div>
-                <div class="form-group">
-                    <label for="tipo">Tipo:</label>
-                    <select id="tipo" required>
-                        <option value="">Selecione um tipo</option>
-                        <option value="Moto">Moto</option>
-                        <option value="Carro">Carro</option>
-                        <option value="Van">Van</option>
-                        <option value="Ônibus">Ônibus</option>
-                        <option value="Caminhão">Caminhão</option>
-                    </select>
-                </div>
-            </div>
-
+          <!-- campos do veículo -->
+          <div class="form-row">
             <div class="form-group">
-                <label for="observacoesVeiculo">Observações:</label>
-                <textarea id="observacoesVeiculo" rows="3"></textarea>            
+              <label for="marca">Marca</label>
+              <input type="text" id="marca" required />
             </div>
-
-            <div class="modal-actions">
-                <button type="button" class="btn-secondary" onclick="fecharModal('modalVeiculo')">Cancelar</button>
-                <button type="submit" class="btn-primary">Cadastrar</button>
+            <div class="form-group">
+              <label for="modelo">Modelo</label>
+              <input type="text" id="modelo" required />
             </div>
-
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="placa">Placa</label>
+              <input type="text" id="placa" required />
+            </div>
+            <div class="form-group">
+              <label for="ano">Ano</label>
+              <input type="number" id="ano" min="1990" max="2030" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="capacidade">Capacidade</label>
+              <input type="number" id="capacidade" min="1" required />
+            </div>
+            <div class="form-group">
+              <label for="tipo">Tipo</label>
+              <select id="tipo" required>
+                <option value="">Selecione um tipo</option>
+                <option value="Moto">Moto</option>
+                <option value="Carro">Carro</option>
+                <option value="Van">Van</option>
+                <option value="Ônibus">Ônibus</option>
+                <option value="Caminhão">Caminhão</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="observacoesVeiculo">Observações</label>
+            <textarea id="observacoesVeiculo" rows="3"></textarea>
+          </div>
+          <div class="modal-actions">
+            <button type="button" class="btn-secondary" id="btnCancelarVeiculo">
+              Cancelar
+            </button>
+            <button type="submit" class="btn-primary">Cadastrar</button>
+          </div>
         </form>
+      </div>
     </div>
-</div>
 
-
-    <script src="../assets/js/dashboard.js"></script>
-</body>
+    <!-- Script principal -->
+    <script type="module" src="../assets/js/dashboard.js"></script>
+  </body>
 </html>

@@ -1,10 +1,11 @@
-import { 
-  buscarVeiculos, 
-  buscarVeiculosDisponiveis, 
-  buscarVeiculoPorId, 
-  criarVeiculo, 
-  atualizarVeiculo, 
-  deletarVeiculo 
+import {
+  buscarVeiculos,
+  buscarVeiculosDisponiveis,
+  buscarVeiculoPorId,
+  criarVeiculo,
+  atualizarVeiculo,
+  deletarVeiculo,
+  buscarVeiculoPorPlaca,
 } from "../models/veiculoModel.js";
 
 // Listar todos os veículos
@@ -34,11 +35,11 @@ export async function obterVeiculo(req, res) {
   try {
     const { id } = req.params;
     const veiculo = await buscarVeiculoPorId(id);
-    
+
     if (!veiculo) {
       return res.status(404).json({ erro: "Veículo não encontrado." });
     }
-    
+
     res.json(veiculo);
   } catch (error) {
     console.error(error);
@@ -49,22 +50,45 @@ export async function obterVeiculo(req, res) {
 // Criar novo veículo
 export async function cadastrarVeiculo(req, res) {
   try {
-    const { modelo, marca, placa, ano, capacidade, tipo, observacoes } = req.body;
+    const {
+      modelo,
+      marca,
+      placa,
+      ano,
+      capacidade,
+      tipo,
+      observacoes,
+      disponivel = true,
+    } = req.body;
 
     if (!modelo || !marca || !placa || !capacidade || !tipo) {
-      return res.status(400).json({ erro: "Preencha todos os campos obrigatórios." });
+      return res
+        .status(400)
+        .json({ erro: "Preencha todos os campos obrigatórios." });
     }
 
-    const novoVeiculo = await criarVeiculo(modelo, marca, placa, ano, capacidade, tipo, observacoes);
+    // Verifica se a placa já existe
+    const veiculoExistente = await buscarVeiculoPorPlaca(placa);
+    if (veiculoExistente) {
+      return res.status(400).json({ erro: "Placa já cadastrada." });
+    }
+
+    const novoVeiculo = await criarVeiculo(
+      modelo,
+      marca,
+      placa,
+      ano,
+      capacidade,
+      tipo,
+      observacoes,
+      disponivel
+    );
     res.status(201).json({
       mensagem: "Veículo cadastrado com sucesso!",
       veiculo: novoVeiculo,
     });
   } catch (error) {
     console.error(error);
-    if (error.code === '23505') { // Violação de chave única (placa)
-      return res.status(400).json({ erro: "Placa já cadastrada." });
-    }
     res.status(500).json({ erro: "Erro ao cadastrar veículo." });
   }
 }
@@ -73,14 +97,35 @@ export async function cadastrarVeiculo(req, res) {
 export async function editarVeiculo(req, res) {
   try {
     const { id } = req.params;
-    const { modelo, marca, placa, ano, capacidade, tipo, disponivel, observacoes } = req.body;
+    const {
+      modelo,
+      marca,
+      placa,
+      ano,
+      capacidade,
+      tipo,
+      disponivel = true,
+      observacoes,
+    } = req.body;
 
     if (!modelo || !marca || !placa || !capacidade || !tipo) {
-      return res.status(400).json({ erro: "Preencha todos os campos obrigatórios." });
+      return res
+        .status(400)
+        .json({ erro: "Preencha todos os campos obrigatórios." });
     }
 
-    const veiculoAtualizado = await atualizarVeiculo(id, modelo, marca, placa, ano, capacidade, tipo, disponivel, observacoes);
-    
+    const veiculoAtualizado = await atualizarVeiculo(
+      id,
+      modelo,
+      marca,
+      placa,
+      ano,
+      capacidade,
+      tipo,
+      disponivel,
+      observacoes
+    );
+
     if (!veiculoAtualizado) {
       return res.status(404).json({ erro: "Veículo não encontrado." });
     }
@@ -91,9 +136,6 @@ export async function editarVeiculo(req, res) {
     });
   } catch (error) {
     console.error(error);
-    if (error.code === '23505') {
-      return res.status(400).json({ erro: "Placa já cadastrada." });
-    }
     res.status(500).json({ erro: "Erro ao atualizar veículo." });
   }
 }
@@ -103,7 +145,7 @@ export async function removerVeiculo(req, res) {
   try {
     const { id } = req.params;
     const veiculoRemovido = await deletarVeiculo(id);
-    
+
     if (!veiculoRemovido) {
       return res.status(404).json({ erro: "Veículo não encontrado." });
     }

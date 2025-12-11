@@ -3,7 +3,7 @@ import pool from "./db.js";
 // Buscar todas as viagens
 export async function buscarViagens() {
   const query = `
-    SELECT v.*, u.nome as motorista_nome, ve.modelo, ve.marca, ve.placa,
+    SELECT v.*, u.nome as motorista_nome, ve.id AS veiculo_id, ve.modelo, ve.marca, ve.placa,
            (SELECT COUNT(*) FROM viagem_participantes vp WHERE vp.viagem_id = v.id) as participantes_count
     FROM viagens v
     LEFT JOIN usuarios u ON v.motorista_id = u.id
@@ -11,36 +11,87 @@ export async function buscarViagens() {
     ORDER BY v.data_viagem DESC, v.hora_saida DESC;
   `;
   const result = await pool.query(query);
-  return result.rows;
+
+  // Mapeando o veiculo para um objeto
+  return result.rows.map((row) => ({
+    ...row,
+    veiculo: {
+      id: row.veiculo_id || null,
+      modelo: row.modelo || "N/A",
+      marca: row.marca || "N/A",
+      placa: row.placa || "N/A",
+    },
+  }));
 }
 
 // Buscar viagem por ID
 export async function buscarViagemPorId(id) {
   const query = `
-    SELECT v.*, u.nome as motorista_nome, ve.modelo, ve.marca, ve.placa
+    SELECT v.*, u.nome as motorista_nome, ve.id AS veiculo_id, ve.modelo, ve.marca, ve.placa
     FROM viagens v
     LEFT JOIN usuarios u ON v.motorista_id = u.id
     LEFT JOIN veiculos ve ON v.veiculo_id = ve.id
     WHERE v.id = $1;
   `;
   const result = await pool.query(query, [id]);
-  return result.rows[0];
+  const row = result.rows[0];
+
+  if (!row) return null;
+
+  return {
+    ...row,
+    veiculo: {
+      id: row.veiculo_id || null,
+      modelo: row.modelo || "N/A",
+      marca: row.marca || "N/A",
+      placa: row.placa || "N/A",
+    },
+  };
 }
 
 // Criar nova viagem
-export async function criarViagem(destino, dataViagem, horaSaida, horaRetorno, motoristaId, veiculoId, vagasDisponiveis, observacoes) {
+export async function criarViagem(
+  destino,
+  dataViagem,
+  horaSaida,
+  horaRetorno,
+  motoristaId,
+  veiculoId,
+  vagasDisponiveis,
+  observacoes
+) {
   const query = `
     INSERT INTO viagens (destino, data_viagem, hora_saida, hora_retorno, motorista_id, veiculo_id, vagas_disponiveis, observacoes)
     VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
     RETURNING *;
   `;
-  const values = [destino, dataViagem, horaSaida, horaRetorno, motoristaId, veiculoId, vagasDisponiveis, observacoes];
+  const values = [
+    destino,
+    dataViagem,
+    horaSaida,
+    horaRetorno,
+    motoristaId,
+    veiculoId,
+    vagasDisponiveis,
+    observacoes,
+  ];
   const result = await pool.query(query, values);
   return result.rows[0];
 }
 
 // Atualizar viagem
-export async function atualizarViagem(id, destino, dataViagem, horaSaida, horaRetorno, motoristaId, veiculoId, vagasDisponiveis, status, observacoes) {
+export async function atualizarViagem(
+  id,
+  destino,
+  dataViagem,
+  horaSaida,
+  horaRetorno,
+  motoristaId,
+  veiculoId,
+  vagasDisponiveis,
+  status,
+  observacoes
+) {
   const query = `
     UPDATE viagens 
     SET destino = $2, data_viagem = $3, hora_saida = $4, hora_retorno = $5, 
@@ -48,14 +99,28 @@ export async function atualizarViagem(id, destino, dataViagem, horaSaida, horaRe
     WHERE id = $1
     RETURNING *;
   `;
-  const values = [id, destino, dataViagem, horaSaida, horaRetorno, motoristaId, veiculoId, vagasDisponiveis, status, observacoes];
+  const values = [
+    id,
+    destino,
+    dataViagem,
+    horaSaida,
+    horaRetorno,
+    motoristaId,
+    veiculoId,
+    vagasDisponiveis,
+    status,
+    observacoes,
+  ];
   const result = await pool.query(query, values);
   return result.rows[0];
 }
 
 // Deletar viagem
 export async function deletarViagem(id) {
-  const result = await pool.query("DELETE FROM viagens WHERE id = $1 RETURNING *", [id]);
+  const result = await pool.query(
+    "DELETE FROM viagens WHERE id = $1 RETURNING *",
+    [id]
+  );
   return result.rows[0];
 }
 
