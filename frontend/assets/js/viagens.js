@@ -4,9 +4,13 @@ import { formatarData, formatarStatus, mostrarErro } from "./utils.js";
 let modoViagem = "cadastrar";
 let viagemEditId = null;
 
+<<<<<<< HEAD
 /* ============================================================
    CARREGAR VIAGENS (listagem principal)
 ============================================================ */
+=======
+// Carrega todas as viagens na tabela
+>>>>>>> 0f329350c59b763237751f0e22312ac904e79fa1
 export async function carregarViagens() {
   try {
     const res = await fetch(`${API_BASE}/viagens`);
@@ -22,6 +26,7 @@ export async function carregarViagens() {
             <td>${v.hora_saida}</td>
             <td>${v.veiculo ? v.veiculo.modelo : "N/A"}</td>
             <td>${v.vagas_disponiveis}</td>
+<<<<<<< HEAD
             <td>
   <span class="status-badge status-${
     v.status?.toLowerCase().replace(/ /g, "_") || "agendada"
@@ -44,6 +49,14 @@ export async function carregarViagens() {
                   <i class="fas fa-trash"></i> Excluir
                 </button>
               </div>
+=======
+            <td><span class="status-badge status-${v.status}">${formatarStatus(
+          v.status
+        )}</span></td>
+            <td>
+                <button onclick="editarViagem(${v.id})">Editar</button>
+                <button onclick="cancelarViagem(${v.id})">Cancelar</button>
+>>>>>>> 0f329350c59b763237751f0e22312ac904e79fa1
             </td>
         </tr>
       `
@@ -54,9 +67,13 @@ export async function carregarViagens() {
   }
 }
 
+<<<<<<< HEAD
 /* ============================================================
    CARREGAR PRÓXIMAS VIAGENS (dashboard)
 ============================================================ */
+=======
+// Carrega as próximas 5 viagens para o dashboard
+>>>>>>> 0f329350c59b763237751f0e22312ac904e79fa1
 export async function carregarProximasViagens() {
   try {
     const res = await fetch(`${API_BASE}/viagens`);
@@ -81,11 +98,17 @@ export async function carregarProximasViagens() {
             <div><strong>${v.destino}</strong> - ${formatarData(
           v.data_viagem
         )}</div>
+<<<<<<< HEAD
             <div>
               ${v.hora_saida} |
               ${v.veiculo?.modelo || "Veículo não definido"} |
               ${v.vagas_disponiveis} vagas
             </div>
+=======
+            <div>${v.hora_saida} | ${
+          v.veiculo?.modelo || "Veículo não definido"
+        } | ${v.vagas_disponiveis} vagas</div>
+>>>>>>> 0f329350c59b763237751f0e22312ac904e79fa1
         </div>
       `
       )
@@ -95,17 +118,26 @@ export async function carregarProximasViagens() {
   }
 }
 
+<<<<<<< HEAD
 /* ============================================================
    MODAL: ABRIR / FECHAR
 ============================================================ */
+=======
+// Abrir modal de viagem
+>>>>>>> 0f329350c59b763237751f0e22312ac904e79fa1
 export function abrirModalViagem() {
   document.getElementById("modalViagem").style.display = "block";
 }
 
+<<<<<<< HEAD
+=======
+// Fechar modal de viagem
+>>>>>>> 0f329350c59b763237751f0e22312ac904e79fa1
 export function fecharModalViagem() {
   document.getElementById("modalViagem").style.display = "none";
 }
 
+<<<<<<< HEAD
 function formatarParaInputDate(dataStr) {
   if (!dataStr) return "";
   const date = new Date(dataStr);
@@ -121,23 +153,34 @@ function formatarParaInputDate(dataStr) {
 /* ============================================================
    EDITAR VIAGEM
 ============================================================ */
+=======
+// Editar viagem
+>>>>>>> 0f329350c59b763237751f0e22312ac904e79fa1
 export async function editarViagem(id) {
   try {
     const res = await fetch(`${API_BASE}/viagens/${id}`);
     const v = await res.json();
 
+<<<<<<< HEAD
     await carregarVeiculosSelect();
 
     document.getElementById("destino").value = v.destino;
     document.getElementById("dataViagem").value = formatarParaInputDate(
       v.data_viagem
     );
+=======
+    document.getElementById("destino").value = v.destino;
+    document.getElementById("dataViagem").value = v.data_viagem;
+>>>>>>> 0f329350c59b763237751f0e22312ac904e79fa1
     document.getElementById("horaSaida").value = v.hora_saida;
     document.getElementById("horaRetorno").value = v.hora_retorno || "";
     document.getElementById("veiculoId").value = v.veiculo?.id || "";
     document.getElementById("vagasDisponiveis").value = v.vagas_disponiveis;
     document.getElementById("observacoes").value = v.observacoes || "";
+<<<<<<< HEAD
     document.getElementById("statusViagem").value = v.status || "Agendada";
+=======
+>>>>>>> 0f329350c59b763237751f0e22312ac904e79fa1
 
     abrirModalViagem();
     modoViagem = "editar";
@@ -147,12 +190,18 @@ export async function editarViagem(id) {
   }
 }
 
+<<<<<<< HEAD
 /* ============================================================
    CANCELAR / EXCLUIR VIAGEM
 ============================================================ */
 export async function cancelarViagem(id) {
   if (!confirm("Deseja cancelar esta viagem?")) return;
 
+=======
+// Cancelar viagem
+export async function cancelarViagem(id) {
+  if (!confirm("Deseja cancelar esta viagem?")) return;
+>>>>>>> 0f329350c59b763237751f0e22312ac904e79fa1
   try {
     const res = await fetch(`${API_BASE}/viagens/${id}`, { method: "DELETE" });
     if (res.ok) {
@@ -165,6 +214,7 @@ export async function cancelarViagem(id) {
   }
 }
 
+<<<<<<< HEAD
 export async function carregarVeiculosSelect() {
   try {
     const res = await fetch(`${API_BASE}/veiculos`);
@@ -203,11 +253,28 @@ document.getElementById("formViagem").onsubmit = async (e) => {
     ),
     observacoes: document.getElementById("observacoes").value,
     status: document.getElementById("statusViagem").value || "Agendada",
+=======
+// Envio do formulário de viagem
+document.getElementById("formViagem").onsubmit = async (e) => {
+  e.preventDefault();
+
+  const formData = {
+    destino: document.getElementById("destino").value,
+    data_viagem: document.getElementById("dataViagem").value,
+    hora_saida: document.getElementById("horaSaida").value,
+    hora_retorno: document.getElementById("horaRetorno").value,
+    veiculo_id: document.getElementById("veiculoId").value,
+    vagas_disponiveis: document.getElementById("vagasDisponiveis").value,
+    observacoes: document.getElementById("observacoes").value,
+>>>>>>> 0f329350c59b763237751f0e22312ac904e79fa1
   };
 
   let url = `${API_BASE}/viagens`;
   let method = "POST";
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0f329350c59b763237751f0e22312ac904e79fa1
   if (modoViagem === "editar") {
     url += `/${viagemEditId}`;
     method = "PUT";
@@ -233,6 +300,7 @@ document.getElementById("formViagem").onsubmit = async (e) => {
     mostrarErro("viagens", error);
   }
 };
+<<<<<<< HEAD
 
 /* ============================================================
    EXPORTAÇÃO PARA O HTML (botões inline)
@@ -257,3 +325,5 @@ document.getElementById("btnNovaViagem").addEventListener("click", async () => {
     mostrarErro("viagens", error);
   }
 });
+=======
+>>>>>>> 0f329350c59b763237751f0e22312ac904e79fa1

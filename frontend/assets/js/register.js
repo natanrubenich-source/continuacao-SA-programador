@@ -39,6 +39,7 @@ document
       const data = await response.json();
       console.log("Resposta do cadastro:", data, "status:", response.status);
 
+<<<<<<< HEAD
       if (response.ok) {
         mensagem.className = "message success";
         mensagem.textContent =
@@ -49,6 +50,25 @@ document
           window.location.href = "index.html";
         }, 1000);
       } else {
+=======
+        if (response.ok) {
+            // Cadastro deu certo
+            mensagem.className = "message success";
+            mensagem.textContent = "Usuário cadastrado com sucesso!";
+            document.getElementById("formCadastro").reset(); // Limpa o formulário
+            
+            // Redireciona para login após 2 segundos
+            // setTimeout(() => {
+            //     window.location.href = "./login.html";
+            // }, 2000);
+        } else {
+            // Cadastro deu erro
+            mensagem.className = "message error";
+            mensagem.textContent = data.erro || "Erro no cadastro.";
+        }
+    } catch (error) {
+        // Erro de conexão
+>>>>>>> 0f329350c59b763237751f0e22312ac904e79fa1
         mensagem.className = "message error";
         mensagem.textContent =
           data.erro || data.message || "Erro ao cadastrar.";

@@ -238,6 +238,7 @@ body {
   gap: 15px;
 }
 
+<<<<<<< HEAD
 .trip-item {
   background-color: #fff;
   border-radius: 8px;
@@ -264,6 +265,37 @@ body {
 .trip-details i {
   margin-right: 4px;
   color: #610bef;
+=======
+/* Item individual da viagem */
+.trip-item {
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  border-left: 4px solid #667eea;
+}
+
+/* Cabeçalho da item da viagem */
+.trip-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+/* Nome do destino de viagens */
+.trip-destination {
+  font-weight: 600;
+  color: #333;
+  font-size: 1.1rem;
+}
+
+/* Data da viagem */
+.trip-details {
+  display: flex;
+  gap: 20px;
+  font-size: 0.9rem;
+  color: #666;
+>>>>>>> 0f329350c59b763237751f0e22312ac904e79fa1
 }
 
 /* SISTEMA DE TABELAS */
@@ -518,6 +550,7 @@ body {
   border-radius: 20px;
   font-size: 0.8rem;
   font-weight: 500;
+<<<<<<< HEAD
 }
 
 tr .status-badge {
@@ -526,6 +559,8 @@ tr .status-badge {
   max-width: 120px;
   align-items: center;
   justify-content: center;
+=======
+>>>>>>> 0f329350c59b763237751f0e22312ac904e79fa1
 }
 
 /* Status: Agendada (azul) */

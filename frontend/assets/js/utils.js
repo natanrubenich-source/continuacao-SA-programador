@@ -4,6 +4,7 @@ export function formatarData(data) {
 }
 
 export function formatarStatus(status) {
+<<<<<<< HEAD
   if (!status) return "Agendada";
   switch (status) {
     case "Agendada":
@@ -17,6 +18,15 @@ export function formatarStatus(status) {
     default:
       return status;
   }
+=======
+  const statusMap = {
+    agendada: "Agendada",
+    em_andamento: "Em Andamento",
+    concluida: "Concluída",
+    cancelada: "Cancelada",
+  };
+  return statusMap[status] || status;
+>>>>>>> 0f329350c59b763237751f0e22312ac904e79fa1
 }
 
 export function mostrarErro(secao, erro) {

@@ -26,7 +26,11 @@ export async function carregarVeiculos() {
   
               <!-- Informações do veículo -->
               <div class="vehicle-info">
+<<<<<<< HEAD
                 <div class="vehicle-info-item"><i class="fa-solid fa-address-card"></i> Placa: ${
+=======
+                <div class="vehicle-info-item"><i class="fas fa-car"></i> Placa: ${
+>>>>>>> 0f329350c59b763237751f0e22312ac904e79fa1
                   v.placa
                 }</div>
                 <div class="vehicle-info-item"><i class="fas fa-calendar"></i> Ano: ${
@@ -35,7 +39,11 @@ export async function carregarVeiculos() {
                 <div class="vehicle-info-item"><i class="fas fa-users"></i> Capacidade: ${
                   v.capacidade
                 }</div>
+<<<<<<< HEAD
                 <div class="vehicle-info-item"><i class="fas fa-car"></i> Tipo: ${
+=======
+                <div class="vehicle-info-item"><i class="fas fa-truck"></i> Tipo: ${
+>>>>>>> 0f329350c59b763237751f0e22312ac904e79fa1
                   v.tipo
                 }</div>
                 ${
